@@ -2,7 +2,7 @@
 
 A custom application that securely links Google Gemini to specific Google Drive folders or documents, enabling Gemini to access and utilize the full contents of your documents for complex querying, analysis, and generation tasks.
 
-## 🎯 Features
+## Features
 
 - **Direct Google Drive Integration**: Connect to any Google Drive folder and access all documents within
 - **Multi-Format Support**: Supports Google Docs, PDFs, Word documents, text files, and more
