@@ -12,7 +12,7 @@ A custom application that securely links Google Gemini to specific Google Drive 
 - **Web Interface**: User-friendly web UI for querying your documents
 - **REST API**: Programmatic access for integration with other applications
 
-## 📋 Prerequisites
+## Prerequisites
 
 1. **Python 3.8+** installed on your system
 2. **Google Cloud Project** with APIs enabled:
@@ -21,7 +21,7 @@ A custom application that securely links Google Gemini to specific Google Drive 
 3. **OAuth2 Credentials** from Google Cloud Console
 4. **Google Gemini API Key** from [Google AI Studio](https://makersuite.google.com/app/apikey)
 
-## 🚀 Quick Start Guide
+## Quick Start Guide
 
 ### Step 1: Set Up Google Cloud Project
 
@@ -35,7 +35,7 @@ A custom application that securely links Google Gemini to specific Google Drive 
    - Fill in app information
    - Add scope: `https://www.googleapis.com/auth/drive.readonly`
    - Add yourself as a test user
-   - **📖 Detailed instructions: See `OAUTH_SETUP_GUIDE.md`**
+   - ** Detailed instructions: See `OAUTH_SETUP_GUIDE.md`**
 5. Create OAuth2 credentials:
    - Go to [Credentials](https://console.cloud.google.com/apis/credentials)
    - Click "Create Credentials" → "OAuth client ID"
@@ -96,7 +96,7 @@ The application will:
 2. Enter your question or prompt in the text area
 3. Click "Ask Gemini" to get answers based on your documents
 
-## 📖 Usage Examples
+## Usage Examples
 
 ### Web Interface
 
@@ -149,7 +149,7 @@ response = gemini.query_with_context(query, context)
 print(response)
 ```
 
-## 🔄 Creating Multiple Instances (Reusable Template)
+## Creating Multiple Instances (Reusable Template)
 
 To create multiple knowledge bases for different projects:
 
@@ -199,7 +199,7 @@ Then run:
 python app.py your_folder_id_here
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 .
@@ -215,7 +215,7 @@ python app.py your_folder_id_here
 └── .env                  # Environment variables (not in repo)
 ```
 
-## 🔧 Configuration Options
+## Configuration Options
 
 Edit `config.py` to customize:
 
@@ -224,24 +224,24 @@ Edit `config.py` to customize:
 - `MAX_CONTEXT_LENGTH`: Maximum context sent to Gemini (default: 30000 characters)
 - `GEMINI_MODEL`: Gemini model to use (default: 'gemini-pro')
 
-## 🛠️ Supported File Types
+## Supported File Types
 
-- ✅ Google Docs (`.gdoc`)
-- ✅ Google Sheets (`.gsheet`)
-- ✅ Google Slides (`.gslides`)
-- ✅ PDF files (`.pdf`)
-- ✅ Microsoft Word (`.docx`, `.doc`)
-- ✅ Plain text files (`.txt`)
-- ✅ CSV files (`.csv`)
+- Google Docs (`.gdoc`)
+- Google Sheets (`.gsheet`)
+- Google Slides (`.gslides`)
+- PDF files (`.pdf`)
+- Microsoft Word (`.docx`, `.doc`)
+- Plain text files (`.txt`)
+- CSV files (`.csv`)
 
-## 🔒 Security Notes
+## Security Notes
 
 1. **Never commit** `credentials.json`, `token.json`, or `.env` to version control
 2. Keep your Gemini API key secure
 3. The OAuth token grants read-only access to your Drive files
 4. Consider using service account credentials for production deployments
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### "Credentials file not found"
 - Ensure `credentials.json` is in the project root
@@ -264,7 +264,7 @@ Edit `config.py` to customize:
 - Verify you have read access to the folder
 - Check file types are supported
 
-## 📚 Advanced Usage
+## Advanced Usage
 
 ### Custom RAG Retrieval
 
@@ -286,15 +286,15 @@ This application can be integrated with Google AI Studio by:
 2. Using the API endpoints from Google AI Studio's custom functions
 3. Or using the application as a standalone service
 
-## 🤝 Contributing
+## Contributing
 
 This is a template project. Feel free to customize and extend it for your needs.
 
-## 📄 License
+## License
 
 This project is provided as-is for the client's use case.
 
-## 🆘 Support
+## Support
 
 For issues or questions:
 1. Check the Troubleshooting section
@@ -303,5 +303,5 @@ For issues or questions:
 
 ---
 
-**Built with ❤️ for seamless Google Drive to Gemini integration**
+**Built with for seamless Google Drive to Gemini integration**
 

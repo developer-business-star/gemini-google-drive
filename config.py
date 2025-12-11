@@ -10,10 +10,10 @@ load_dotenv()
 # Google Drive Configuration
 # Get this from the Google Drive folder URL: 
 # https://drive.google.com/drive/folders/FOLDER_ID_HERE
-DRIVE_FOLDER_ID = os.getenv('DRIVE_FOLDER_ID', '18KkoJlKWFgMAafsJRTBvh34YQzEGEvuw')
+DRIVE_FOLDER_ID = os.getenv('DRIVE_FOLDER_ID', '')
 
 # Google Gemini Configuration
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'AIzaSyB10SYk8yNVpWp72u_wmx5E1DbapIAMAo4')
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', '')
 GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-flash-latest')  # Options: 'gemini-flash-latest' (fast), 'gemini-pro-latest' (more capable)
 
 # Google Drive API Credentials

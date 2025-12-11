@@ -61,7 +61,6 @@ HTML_TEMPLATE = """
         }
         .container {
             background: white;
-            border-radius: 8px;
             padding: 30px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
@@ -136,17 +135,17 @@ HTML_TEMPLATE = """
 </head>
 <body>
     <div class="container">
-        <h1>🚀 Google Drive to Gemini Connector</h1>
+        <h1>Google Drive to Gemini Connector</h1>
         <p class="subtitle">Query your Google Drive documents using Google Gemini AI</p>
         
         <div class="info">
             <strong>Connected Folder ID:</strong> {{ folder_id }}<br>
             <strong>Documents Loaded:</strong> {{ doc_count }} files<br>
-            <strong>Model:</strong> gemini-flash-latest (Free Tier) ✅
+            <strong>Model:</strong> gemini-flash-latest
         </div>
         
-        <div class="info" style="background: #fff3cd; border-left-color: #ffc107;">
-            <strong>💡 Pricing Information:</strong><br>
+        <div class="info" style="background: #fff3cd; border-left-color: #ffc107; display: none">
+            <strong>Pricing Information:</strong><br>
             This application uses <strong>free tier models</strong> (no cost). For premium models like gemini-2.5-pro, 
             a paid Google Cloud billing account is required. See <code>CLIENT_PRICING_MESSAGE.md</code> for details.
         </div>
@@ -154,7 +153,7 @@ HTML_TEMPLATE = """
         <div class="query-form">
             <form id="queryForm">
                 <label for="query"><strong>Enter your question or prompt:</strong></label>
-                <textarea id="query" name="query" placeholder="Ask anything about your documents..."></textarea>
+                <textarea id="query" style="margin-top: 10px;" name="query" placeholder="Ask anything about your documents..."></textarea>
                 <button type="submit">Ask Gemini</button>
             </form>
         </div>
@@ -213,6 +212,15 @@ HTML_TEMPLATE = """
 @app.route('/')
 def index():
     """Render the main web interface."""
+    # Try to initialize if not already done
+    global rag_processor
+    if rag_processor is None:
+        try:
+            initialize_connectors()
+        except Exception as e:
+            # Still show the page but with error info
+            pass
+    
     doc_count = len(rag_processor.documents) if rag_processor else 0
     return render_template_string(
         HTML_TEMPLATE,
@@ -225,7 +233,13 @@ def index():
 def query():
     """API endpoint for querying documents via Gemini."""
     if not gemini_connector or not rag_processor:
-        return jsonify({'error': 'Connectors not initialized'}), 500
+        # Try to initialize if not already done
+        try:
+            initialize_connectors()
+        except Exception as e:
+            return jsonify({
+                'error': f'Connectors not initialized. Initialization failed: {str(e)}. Please check the terminal/console for details.'
+            }), 500
     
     data = request.get_json()
     user_query = data.get('query', '')
@@ -284,10 +298,10 @@ if __name__ == '__main__':
         print("\n" + "="*50)
         print("✓ Application started successfully!")
         print("="*50)
-        print(f"📁 Connected to folder: {DRIVE_FOLDER_ID}")
-        print(f"📄 Loaded {len(rag_processor.documents)} documents")
-        print(f"🌐 Web interface: http://localhost:5000")
-        print(f"🔌 API endpoint: http://localhost:5000/api/query")
+        print(f"Connected to folder: {DRIVE_FOLDER_ID}")
+        print(f"Loaded {len(rag_processor.documents)} documents")
+        print(f"Web interface: http://localhost:5000")
+        print(f"API endpoint: http://localhost:5000/api/query")
         print("="*50 + "\n")
     except Exception as e:
         print(f"\n❌ Error initializing: {str(e)}\n")
